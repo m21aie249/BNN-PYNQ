@@ -2,10 +2,11 @@
 
 ## Updates applied: 
 
+- Need to add --no-build-isolation to install corectly on PYNQ Z2 3.0.1 SD image
 - Scripts updated to support VITIS_HLS 2022.1
 - All bitstreams for Pynq board regenerated using Vivado 2022.1 and VITIS_HLS 2022.1
 - All notebooks edited to remove deprecated xlnk code for resetting FPGA
-- All notebooks retested
+- All notebooks retested on PYNQ-Z2 SD image 3.0.1
 
 ## Original README.MD
 
