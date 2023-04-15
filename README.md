@@ -1,13 +1,13 @@
-# Forked from Original Repo: https://github.com/Xilinx/BNN-PYNQ
+## Forked from Original Repo: https://github.com/Xilinx/BNN-PYNQ
 
-# Updates applied: 
+## Updates applied: 
 
 - Scripts updated to support VITIS_HLS 2022.1
 - All bitstreams for Pynq board regenerated using Vivado 2022.1 and VITIS_HLS 2022.1
 - All notebooks edited to remove deprecated xlnk code for resetting FPGA
 - All notebooks retested
 
-# Original README.MD
+## Original README.MD
 
 # BNN-PYNQ PIP INSTALL Package
 
