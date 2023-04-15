@@ -56,7 +56,7 @@ NETWORK=$1
 PLATFORM=$2
 MODE=$3
 PATH_TO_VIVADO=$(which vivado)
-PATH_TO_VIVADO_HLS=$(which vivado_hls)
+PATH_TO_VIVADO_HLS=$(which vitis_hls)
 
 if [ -z "$XILINX_BNN_ROOT" ]; then
     export XILINX_BNN_ROOT="$( ( cd "$(dirname "$0")/.."; pwd) )"
@@ -142,7 +142,7 @@ if [[ ("$MODE" == "h") || ("$MODE" == "a")  ]]; then
 	echo "Error: Please copy binary weight and threshold parameters to $PARAMS"
 	exit 1
   fi
-  vivado_hls -f $HLS_SCRIPT -tclargs $NETWORK-$PLATFORM $HLS_SRC_DIR $PARAMS $TEST_INPUT $TEST_RESULT $PLATFORM_PART $TARGET_CLOCK
+  vitis_hls -f $HLS_SCRIPT -tclargs $NETWORK-$PLATFORM $HLS_SRC_DIR $PARAMS $TEST_INPUT $TEST_RESULT $PLATFORM_PART $TARGET_CLOCK
   if cat $VIVADO_HLS_LOG | grep "ERROR"; then
     echo "Error in Vivado_HLS"
     exit 1	
@@ -184,7 +184,7 @@ if [[ ("$MODE" == "b") || ("$MODE" == "a")  ]]; then
   vivado -mode batch -notrace -source $VIVADO_SCRIPT -tclargs $HLS_IP_REPO $TARGET_NAME $VIVADO_OUT_DIR $VIVADO_SCRIPT_DIR
   cp -f "$VIVADO_OUT_DIR/$TARGET_NAME.runs/impl_1/procsys_wrapper.bit" $TARGET_BITSTREAM
   cp -f "$VIVADO_OUT_DIR/procsys.tcl" $TARGET_TCL
-  cp -f "$VIVADO_OUT_DIR/$TARGET_NAME.srcs/sources_1/bd/procsys/hw_handoff/procsys.hwh" $TARGET_HWH
+  cp -f "$VIVADO_OUT_DIR/$TARGET_NAME.gen/sources_1/bd/procsys/hw_handoff/procsys.hwh" $TARGET_HWH
   # extract parts of the post-implementation reports
   cat "$VIVADO_OUT_DIR/$TARGET_NAME.runs/impl_1/procsys_wrapper_timing_summary_routed.rpt" | grep "| Design Timing Summary" -B 3 -A 10 > $REPORT_OUT_DIR/vivado.txt
   cat "$VIVADO_OUT_DIR/$TARGET_NAME.runs/impl_1/procsys_wrapper_utilization_placed.rpt" | grep "| Slice LUTs" -B 3 -A 11 >> $REPORT_OUT_DIR/vivado.txt

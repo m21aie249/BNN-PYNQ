@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Jan  9 11:56:08 2020" VIVADOVERSION="2019.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Apr 14 15:33:54 2023" VIVADOVERSION="2022.1">
 
   <SYSTEMINFO ARCH="zynq" DEVICE="7z020" NAME="procsys" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -29,7 +29,7 @@
         <CONNECTION INSTANCE="ps7" PORT="DDR_CS_n"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="IO" NAME="DDR_reset_n" SIGIS="rst" SIGNAME="ps7_DDR_DRSTB">
+    <PORT DIR="IO" NAME="DDR_reset_n" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="ps7_DDR_DRSTB">
       <CONNECTIONS>
         <CONNECTION INSTANCE="ps7" PORT="DDR_DRSTB"/>
       </CONNECTIONS>
@@ -159,7 +159,7 @@
   </EXTERNALINTERFACES>
 
   <MODULES>
-    <MODULE COREREVISION="2001091154" FULLNAME="/BlackBoxJam_0" HWVERSION="1.0" INSTANCE="BlackBoxJam_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="BlackBoxJam" VLNV="xilinx.com:hls:BlackBoxJam:1.0">
+    <MODULE COREREVISION="2112987212" FULLNAME="/BlackBoxJam_0" HWVERSION="1.0" INSTANCE="BlackBoxJam_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="BlackBoxJam" VLNV="xilinx.com:hls:BlackBoxJam:1.0">
       <DOCUMENTS/>
       <ADDRESSBLOCKS>
         <ADDRESSBLOCK ACCESS="read-write" INTERFACE="s_axi_control" NAME="Reg" RANGE="65536" USAGE="register">
@@ -240,7 +240,27 @@
                   <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
                   <PROPERTY NAME="READ_ACTION" VALUE="modify"/>
                   <PROPERTY NAME="BIT_OFFSET" VALUE="8"/>
-                  <PROPERTY NAME="BIT_WIDTH" VALUE="24"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="1"/>
+                </FIELD>
+                <FIELD NAME="INTERRUPT">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Control signal Register for 'interrupt'."/>
+                  <PROPERTY NAME="ADDRESS_OFFSET" VALUE="9"/>
+                  <PROPERTY NAME="ACCESS" VALUE="read-only"/>
+                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
+                  <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
+                  <PROPERTY NAME="READ_ACTION" VALUE="modify"/>
+                  <PROPERTY NAME="BIT_OFFSET" VALUE="9"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="1"/>
+                </FIELD>
+                <FIELD NAME="RESERVED_3">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Reserved.  0s on read."/>
+                  <PROPERTY NAME="ADDRESS_OFFSET" VALUE="10"/>
+                  <PROPERTY NAME="ACCESS" VALUE="read-only"/>
+                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
+                  <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
+                  <PROPERTY NAME="READ_ACTION" VALUE="modify"/>
+                  <PROPERTY NAME="BIT_OFFSET" VALUE="10"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="22"/>
                 </FIELD>
               </FIELDS>
             </REGISTER>
@@ -302,7 +322,7 @@
                   <PROPERTY NAME="BIT_OFFSET" VALUE="1"/>
                   <PROPERTY NAME="BIT_WIDTH" VALUE="1"/>
                 </FIELD>
-                <FIELD NAME="RESERVED">
+                <FIELD NAME="RESERVED_0">
                   <PROPERTY NAME="DESCRIPTION" VALUE="Reserved.  0s on read."/>
                   <PROPERTY NAME="ADDRESS_OFFSET" VALUE="2"/>
                   <PROPERTY NAME="ACCESS" VALUE="read-only"/>
@@ -323,26 +343,26 @@
               <PROPERTY NAME="RESET_VALUE" VALUE="0"/>
               <FIELDS>
                 <FIELD NAME="CHAN0_INT_ST">
-                  <PROPERTY NAME="DESCRIPTION" VALUE="Channel 0 (ap_done) Interrupt Status. 0 = No Channel 0 input interrupt, 1 = Channel 0 input interrup"/>
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Channel 0 (ap_done) Interrupt Status. 0 = No Channel 0 interrupt, 1 = Channel 0 interrupt."/>
                   <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
                   <PROPERTY NAME="ACCESS" VALUE="read-only"/>
-                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE="oneToToggle"/>
+                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
                   <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
                   <PROPERTY NAME="READ_ACTION" VALUE="modify"/>
                   <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
                   <PROPERTY NAME="BIT_WIDTH" VALUE="1"/>
                 </FIELD>
                 <FIELD NAME="CHAN1_INT_ST">
-                  <PROPERTY NAME="DESCRIPTION" VALUE="Channel 1 (ap_ready) Interrupt Status. 0 = No Channel 1 input interrupt, 1 = Channel 1 input interrup"/>
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Channel 1 (ap_ready) Interrupt Status. 0 = No Channel 1 interrupt, 1 = Channel 1 interrupt."/>
                   <PROPERTY NAME="ADDRESS_OFFSET" VALUE="1"/>
                   <PROPERTY NAME="ACCESS" VALUE="read-only"/>
-                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE="oneToToggle"/>
+                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
                   <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
                   <PROPERTY NAME="READ_ACTION" VALUE="modify"/>
                   <PROPERTY NAME="BIT_OFFSET" VALUE="1"/>
                   <PROPERTY NAME="BIT_WIDTH" VALUE="1"/>
                 </FIELD>
-                <FIELD NAME="RESERVED">
+                <FIELD NAME="RESERVED_0">
                   <PROPERTY NAME="DESCRIPTION" VALUE="Reserved.  0s on read."/>
                   <PROPERTY NAME="ADDRESS_OFFSET" VALUE="2"/>
                   <PROPERTY NAME="ACCESS" VALUE="read-only"/>
@@ -354,16 +374,16 @@
                 </FIELD>
               </FIELDS>
             </REGISTER>
-            <REGISTER NAME="in_V_1">
-              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of in_V"/>
+            <REGISTER NAME="in_r_1">
+              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of in_r"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="16"/>
               <PROPERTY NAME="SIZE" VALUE="32"/>
               <PROPERTY NAME="ACCESS" VALUE="write-only"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0"/>
               <FIELDS>
-                <FIELD NAME="in_V">
-                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 Data signal of in_V"/>
+                <FIELD NAME="in_r">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 of in_r"/>
                   <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
                   <PROPERTY NAME="ACCESS" VALUE="write-only"/>
                   <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
@@ -374,16 +394,16 @@
                 </FIELD>
               </FIELDS>
             </REGISTER>
-            <REGISTER NAME="in_V_2">
-              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of in_V"/>
+            <REGISTER NAME="in_r_2">
+              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of in_r"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="20"/>
               <PROPERTY NAME="SIZE" VALUE="32"/>
               <PROPERTY NAME="ACCESS" VALUE="write-only"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0"/>
               <FIELDS>
-                <FIELD NAME="in_V">
-                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 63 to 32 Data signal of in_V"/>
+                <FIELD NAME="in_r">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 63 to 32 of in_r"/>
                   <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
                   <PROPERTY NAME="ACCESS" VALUE="write-only"/>
                   <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
@@ -394,16 +414,16 @@
                 </FIELD>
               </FIELDS>
             </REGISTER>
-            <REGISTER NAME="out_V_1">
-              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of out_V"/>
+            <REGISTER NAME="out_r_1">
+              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of out_r"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="28"/>
               <PROPERTY NAME="SIZE" VALUE="32"/>
               <PROPERTY NAME="ACCESS" VALUE="write-only"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0"/>
               <FIELDS>
-                <FIELD NAME="out_V">
-                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 Data signal of out_V"/>
+                <FIELD NAME="out_r">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 of out_r"/>
                   <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
                   <PROPERTY NAME="ACCESS" VALUE="write-only"/>
                   <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
@@ -414,16 +434,16 @@
                 </FIELD>
               </FIELDS>
             </REGISTER>
-            <REGISTER NAME="out_V_2">
-              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of out_V"/>
+            <REGISTER NAME="out_r_2">
+              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of out_r"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="32"/>
               <PROPERTY NAME="SIZE" VALUE="32"/>
               <PROPERTY NAME="ACCESS" VALUE="write-only"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0"/>
               <FIELDS>
-                <FIELD NAME="out_V">
-                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 63 to 32 Data signal of out_V"/>
+                <FIELD NAME="out_r">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 63 to 32 of out_r"/>
                   <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
                   <PROPERTY NAME="ACCESS" VALUE="write-only"/>
                   <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
@@ -443,7 +463,7 @@
               <PROPERTY NAME="RESET_VALUE" VALUE="0"/>
               <FIELDS>
                 <FIELD NAME="doInit">
-                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 0 to 0 Data signal of doInit"/>
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 0 to 0 of doInit"/>
                   <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
                   <PROPERTY NAME="ACCESS" VALUE="write-only"/>
                   <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
@@ -473,7 +493,7 @@
               <PROPERTY NAME="RESET_VALUE" VALUE="0"/>
               <FIELDS>
                 <FIELD NAME="targetLayer">
-                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 Data signal of targetLayer"/>
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 of targetLayer"/>
                   <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
                   <PROPERTY NAME="ACCESS" VALUE="write-only"/>
                   <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
@@ -493,7 +513,7 @@
               <PROPERTY NAME="RESET_VALUE" VALUE="0"/>
               <FIELDS>
                 <FIELD NAME="targetMem">
-                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 Data signal of targetMem"/>
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 of targetMem"/>
                   <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
                   <PROPERTY NAME="ACCESS" VALUE="write-only"/>
                   <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
@@ -513,7 +533,7 @@
               <PROPERTY NAME="RESET_VALUE" VALUE="0"/>
               <FIELDS>
                 <FIELD NAME="targetInd">
-                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 Data signal of targetInd"/>
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 of targetInd"/>
                   <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
                   <PROPERTY NAME="ACCESS" VALUE="write-only"/>
                   <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
@@ -533,7 +553,7 @@
               <PROPERTY NAME="RESET_VALUE" VALUE="0"/>
               <FIELDS>
                 <FIELD NAME="targetThresh">
-                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 Data signal of targetThresh"/>
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 of targetThresh"/>
                   <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
                   <PROPERTY NAME="ACCESS" VALUE="write-only"/>
                   <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
@@ -544,16 +564,16 @@
                 </FIELD>
               </FIELDS>
             </REGISTER>
-            <REGISTER NAME="val_V_1">
-              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of val_V"/>
+            <REGISTER NAME="val_r_1">
+              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of val_r"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="80"/>
               <PROPERTY NAME="SIZE" VALUE="32"/>
               <PROPERTY NAME="ACCESS" VALUE="write-only"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0"/>
               <FIELDS>
-                <FIELD NAME="val_V">
-                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 Data signal of val_V"/>
+                <FIELD NAME="val_r">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 of val_r"/>
                   <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
                   <PROPERTY NAME="ACCESS" VALUE="write-only"/>
                   <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
@@ -564,16 +584,16 @@
                 </FIELD>
               </FIELDS>
             </REGISTER>
-            <REGISTER NAME="val_V_2">
-              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of val_V"/>
+            <REGISTER NAME="val_r_2">
+              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of val_r"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="84"/>
               <PROPERTY NAME="SIZE" VALUE="32"/>
               <PROPERTY NAME="ACCESS" VALUE="write-only"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0"/>
               <FIELDS>
-                <FIELD NAME="val_V">
-                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 63 to 32 Data signal of val_V"/>
+                <FIELD NAME="val_r">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 63 to 32 of val_r"/>
                   <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
                   <PROPERTY NAME="ACCESS" VALUE="write-only"/>
                   <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
@@ -593,7 +613,7 @@
               <PROPERTY NAME="RESET_VALUE" VALUE="0"/>
               <FIELDS>
                 <FIELD NAME="numReps">
-                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 Data signal of numReps"/>
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 of numReps"/>
                   <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
                   <PROPERTY NAME="ACCESS" VALUE="write-only"/>
                   <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
@@ -630,8 +650,8 @@
         <PARAMETER NAME="latency" VALUE="undef"/>
         <PARAMETER NAME="II" VALUE="x"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_S_AXI_CONTROL_BASEADDR" VALUE="0x43C00000"/>
-        <PARAMETER NAME="C_S_AXI_CONTROL_HIGHADDR" VALUE="0x43C0FFFF"/>
+        <PARAMETER NAME="C_S_AXI_CONTROL_BASEADDR" VALUE="0x40000000"/>
+        <PARAMETER NAME="C_S_AXI_CONTROL_HIGHADDR" VALUE="0x4000FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="I" LEFT="6" NAME="s_axi_control_AWADDR" RIGHT="0" SIGIS="undef" SIGNAME="BlackBoxJam_0_s_axi_control_AWADDR">
@@ -724,7 +744,7 @@
             <CONNECTION INSTANCE="ps7" PORT="FCLK_CLK0"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="ap_rst_n" SIGIS="rst" SIGNAME="rst_ps7_100M_peripheral_aresetn">
+        <PORT DIR="I" NAME="ap_rst_n" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="rst_ps7_100M_peripheral_aresetn">
           <CONNECTIONS>
             <CONNECTION INSTANCE="rst_ps7_100M" PORT="peripheral_aresetn"/>
           </CONNECTIONS>
@@ -932,7 +952,7 @@
           <PARAMETER NAME="NUM_READ_OUTSTANDING" VALUE="1"/>
           <PARAMETER NAME="NUM_WRITE_OUTSTANDING" VALUE="1"/>
           <PARAMETER NAME="MAX_BURST_LENGTH" VALUE="1"/>
-          <PARAMETER NAME="PHASE" VALUE="0.000"/>
+          <PARAMETER NAME="PHASE" VALUE="0.0"/>
           <PARAMETER NAME="CLK_DOMAIN" VALUE="procsys_ps7_0_FCLK_CLK0"/>
           <PARAMETER NAME="NUM_READ_THREADS" VALUE="4"/>
           <PARAMETER NAME="NUM_WRITE_THREADS" VALUE="4"/>
@@ -960,12 +980,11 @@
           </PORTMAPS>
         </BUSINTERFACE>
         <BUSINTERFACE BUSNAME="BlackBoxJam_0_m_axi_hostmem" DATAWIDTH="64" NAME="m_axi_hostmem" TYPE="MASTER" VLNV="xilinx.com:interface:aximm:1.0">
-          <PARAMETER NAME="ADDR_WIDTH" VALUE="64"/>
-          <PARAMETER NAME="MAX_BURST_LENGTH" VALUE="256"/>
           <PARAMETER NAME="NUM_READ_OUTSTANDING" VALUE="16"/>
           <PARAMETER NAME="NUM_WRITE_OUTSTANDING" VALUE="16"/>
           <PARAMETER NAME="MAX_READ_BURST_LENGTH" VALUE="16"/>
           <PARAMETER NAME="MAX_WRITE_BURST_LENGTH" VALUE="16"/>
+          <PARAMETER NAME="MAX_BURST_LENGTH" VALUE="256"/>
           <PARAMETER NAME="PROTOCOL" VALUE="AXI4"/>
           <PARAMETER NAME="READ_WRITE_MODE" VALUE="READ_WRITE"/>
           <PARAMETER NAME="HAS_BURST" VALUE="0"/>
@@ -973,6 +992,7 @@
           <PARAMETER NAME="DATA_WIDTH" VALUE="64"/>
           <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="ADDR_WIDTH" VALUE="64"/>
           <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
           <PARAMETER NAME="ARUSER_WIDTH" VALUE="0"/>
           <PARAMETER NAME="WUSER_WIDTH" VALUE="0"/>
@@ -986,7 +1006,7 @@
           <PARAMETER NAME="HAS_WSTRB" VALUE="1"/>
           <PARAMETER NAME="HAS_BRESP" VALUE="1"/>
           <PARAMETER NAME="HAS_RRESP" VALUE="1"/>
-          <PARAMETER NAME="PHASE" VALUE="0.000"/>
+          <PARAMETER NAME="PHASE" VALUE="0.0"/>
           <PARAMETER NAME="CLK_DOMAIN" VALUE="procsys_ps7_0_FCLK_CLK0"/>
           <PARAMETER NAME="NUM_READ_THREADS" VALUE="1"/>
           <PARAMETER NAME="NUM_WRITE_THREADS" VALUE="1"/>
@@ -1039,7 +1059,7 @@
         <PERIPHERAL INSTANCE="ps7"/>
       </PERIPHERALS>
     </MODULE>
-    <MODULE COREREVISION="21" FULLNAME="/axi_mem_intercon" HWVERSION="2.1" INSTANCE="axi_mem_intercon" IPTYPE="BUS" IS_ENABLE="1" MODCLASS="BUS" MODTYPE="axi_interconnect" VLNV="xilinx.com:ip:axi_interconnect:2.1">
+    <MODULE COREREVISION="27" FULLNAME="/axi_mem_intercon" HWVERSION="2.1" INSTANCE="axi_mem_intercon" IPTYPE="BUS" IS_ENABLE="1" MODCLASS="BUS" MODTYPE="axi_interconnect" VLNV="xilinx.com:ip:axi_interconnect:2.1">
       <DOCUMENTS>
         <DOCUMENT SOURCE="http://www.xilinx.com/cgi-bin/docs/ipdoc?c=axi_interconnect;v=v2_1;d=pg059-axi-interconnect.pdf"/>
       </DOCUMENTS>
@@ -3159,7 +3179,7 @@
         <PORT CLKFREQUENCY="142857132" DIR="O" NAME="FCLK_CLK1" SIGIS="clk"/>
         <PORT CLKFREQUENCY="200000000" DIR="O" NAME="FCLK_CLK2" SIGIS="clk"/>
         <PORT CLKFREQUENCY="166666672" DIR="O" NAME="FCLK_CLK3" SIGIS="clk"/>
-        <PORT DIR="O" NAME="FCLK_RESET0_N" SIGIS="rst" SIGNAME="ps7_FCLK_RESET0_N">
+        <PORT DIR="O" NAME="FCLK_RESET0_N" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="ps7_FCLK_RESET0_N">
           <CONNECTIONS>
             <CONNECTION INSTANCE="rst_ps7_100M" PORT="ext_reset_in"/>
           </CONNECTIONS>
@@ -3357,7 +3377,7 @@
           <PARAMETER NAME="HAS_BRESP" VALUE="1"/>
           <PARAMETER NAME="HAS_RRESP" VALUE="1"/>
           <PARAMETER NAME="MAX_BURST_LENGTH" VALUE="16"/>
-          <PARAMETER NAME="PHASE" VALUE="0.000"/>
+          <PARAMETER NAME="PHASE" VALUE="0.0"/>
           <PARAMETER NAME="CLK_DOMAIN" VALUE="procsys_ps7_0_FCLK_CLK0"/>
           <PARAMETER NAME="NUM_READ_THREADS" VALUE="4"/>
           <PARAMETER NAME="NUM_WRITE_THREADS" VALUE="4"/>
@@ -3430,7 +3450,7 @@
           <PARAMETER NAME="HAS_RRESP" VALUE="1"/>
           <PARAMETER NAME="SUPPORTS_NARROW_BURST" VALUE="0"/>
           <PARAMETER NAME="MAX_BURST_LENGTH" VALUE="16"/>
-          <PARAMETER NAME="PHASE" VALUE="0.000"/>
+          <PARAMETER NAME="PHASE" VALUE="0.0"/>
           <PARAMETER NAME="CLK_DOMAIN" VALUE="procsys_ps7_0_FCLK_CLK0"/>
           <PARAMETER NAME="NUM_READ_THREADS" VALUE="1"/>
           <PARAMETER NAME="NUM_WRITE_THREADS" VALUE="1"/>
@@ -3480,13 +3500,13 @@
         </BUSINTERFACE>
       </BUSINTERFACES>
       <MEMORYMAP>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_S_AXI_CONTROL_BASEADDR" BASEVALUE="0x43C00000" HIGHNAME="C_S_AXI_CONTROL_HIGHADDR" HIGHVALUE="0x43C0FFFF" INSTANCE="BlackBoxJam_0" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_GP0" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="s_axi_control"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_S_AXI_CONTROL_BASEADDR" BASEVALUE="0x40000000" HIGHNAME="C_S_AXI_CONTROL_HIGHADDR" HIGHVALUE="0x4000FFFF" INSTANCE="BlackBoxJam_0" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_GP0" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="s_axi_control"/>
       </MEMORYMAP>
       <PERIPHERALS>
         <PERIPHERAL INSTANCE="BlackBoxJam_0"/>
       </PERIPHERALS>
     </MODULE>
-    <MODULE COREREVISION="21" FULLNAME="/ps7_axi_periph" HWVERSION="2.1" INSTANCE="ps7_axi_periph" IPTYPE="BUS" IS_ENABLE="1" MODCLASS="BUS" MODTYPE="axi_interconnect" VLNV="xilinx.com:ip:axi_interconnect:2.1">
+    <MODULE COREREVISION="27" FULLNAME="/ps7_axi_periph" HWVERSION="2.1" INSTANCE="ps7_axi_periph" IPTYPE="BUS" IS_ENABLE="1" MODCLASS="BUS" MODTYPE="axi_interconnect" VLNV="xilinx.com:ip:axi_interconnect:2.1">
       <DOCUMENTS>
         <DOCUMENT SOURCE="http://www.xilinx.com/cgi-bin/docs/ipdoc?c=axi_interconnect;v=v2_1;d=pg059-axi-interconnect.pdf"/>
       </DOCUMENTS>
@@ -4248,19 +4268,19 @@
             <CONNECTION INSTANCE="ps7" PORT="FCLK_CLK0"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="ext_reset_in" SIGIS="rst" SIGNAME="ps7_FCLK_RESET0_N">
+        <PORT DIR="I" NAME="ext_reset_in" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="ps7_FCLK_RESET0_N">
           <CONNECTIONS>
             <CONNECTION INSTANCE="ps7" PORT="FCLK_RESET0_N"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="aux_reset_in" SIGIS="rst"/>
-        <PORT DIR="I" NAME="mb_debug_sys_rst" SIGIS="rst"/>
+        <PORT DIR="I" NAME="aux_reset_in" POLARITY="ACTIVE_LOW" SIGIS="rst"/>
+        <PORT DIR="I" NAME="mb_debug_sys_rst" POLARITY="ACTIVE_HIGH" SIGIS="rst"/>
         <PORT DIR="I" NAME="dcm_locked" SIGIS="undef"/>
-        <PORT DIR="O" NAME="mb_reset" SIGIS="rst"/>
-        <PORT DIR="O" LEFT="0" NAME="bus_struct_reset" RIGHT="0" SIGIS="rst"/>
-        <PORT DIR="O" LEFT="0" NAME="peripheral_reset" RIGHT="0" SIGIS="rst"/>
-        <PORT DIR="O" LEFT="0" NAME="interconnect_aresetn" RIGHT="0" SIGIS="rst"/>
-        <PORT DIR="O" LEFT="0" NAME="peripheral_aresetn" RIGHT="0" SIGIS="rst" SIGNAME="rst_ps7_100M_peripheral_aresetn">
+        <PORT DIR="O" NAME="mb_reset" POLARITY="ACTIVE_HIGH" SIGIS="rst"/>
+        <PORT DIR="O" LEFT="0" NAME="bus_struct_reset" POLARITY="ACTIVE_HIGH" RIGHT="0" SIGIS="rst"/>
+        <PORT DIR="O" LEFT="0" NAME="peripheral_reset" POLARITY="ACTIVE_HIGH" RIGHT="0" SIGIS="rst"/>
+        <PORT DIR="O" LEFT="0" NAME="interconnect_aresetn" POLARITY="ACTIVE_LOW" RIGHT="0" SIGIS="rst"/>
+        <PORT DIR="O" LEFT="0" NAME="peripheral_aresetn" POLARITY="ACTIVE_LOW" RIGHT="0" SIGIS="rst" SIGNAME="rst_ps7_100M_peripheral_aresetn">
           <CONNECTIONS>
             <CONNECTION INSTANCE="BlackBoxJam_0" PORT="ap_rst_n"/>
             <CONNECTION INSTANCE="axi_mem_intercon" PORT="S00_ARESETN"/>
