@@ -2,17 +2,15 @@
 
 ## Updates applied: 
 
-- Need to add --no-build-isolation to install corectly on PYNQ-Z2 board running 3.0.1 SD image
-- For bitfile builds, follow instructions below in original repo to run on the machine with Vivado/Vitis installed
-- Scripts updated to support VITIS_HLS 2022.1
+- Scripts updated to support VITIS_HLS 2022.1 and PYNQ 3.0.1 SD image
 - All bitstreams for Pynq board regenerated using Vivado 2022.1 and VITIS_HLS 2022.1
 - All notebooks edited to remove deprecated xlnk code for resetting FPGA
 - All notebooks retested on PYNQ-Z2 SD image 3.0.1
 
-# On machine that has Vivado/Vitis 2022.1 installed, clone this repo and follow the remaining instructions in original repo for hardware rebuild:
+- On machine that has Vivado/Vitis 2022.1 installed, clone this repo and follow the remaining instructions in original repo for hardware rebuild:
 `git clone https://github.com/m21aie249/BNN-PYNQ.git --recursive`
 
-# On the Pynq-Z2 board running 3.0.1, use this command to install the notebooks:
+- On the Pynq-Z2 board running 3.0.1, use this command to install the notebooks:
 `sudo pip3 install git+https://github.com/m21aie249/BNN-PYNQ.git --no-build-isolation`
 
 ## Original README.MD
