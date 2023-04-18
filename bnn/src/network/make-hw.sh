@@ -81,17 +81,9 @@ fi
 
 OLD_DIR=$(pwd)
 cd $XILINX_BNN_ROOT
-if [ -d "${XILINX_BNN_ROOT}/xilinx-tiny-cnn/" ]; then
-	echo "xilinx-tiny-cnn already cloned"
-else
-	git clone https://github.com/Xilinx/xilinx-tiny-cnn.git
-fi
+git clone https://github.com/Xilinx/xilinx-tiny-cnn.git
 cd library
-if [ -d "${XILINX_BNN_ROOT}/library/finn-hlslib" ]; then
-	echo "FINN hls library already cloned"
-else
-	git clone https://github.com/Xilinx/finn-hlslib.git
-fi
+git clone https://github.com/Xilinx/finn-hlslib.git
 cd $OLD_DIR
 
 
@@ -103,7 +95,7 @@ HLS_OUT_DIR="$BNN_PATH/output/hls-syn/$NETWORK-$PLATFORM"
 HLS_SCRIPT=$BNN_PATH/hls-syn.tcl
 HLS_IP_REPO="$HLS_OUT_DIR/sol1/impl/ip"
 
-VIVADO_HLS_LOG="$BNN_PATH/output/hls-syn/vivado_hls.log"
+VIVADO_HLS_LOG="$BNN_PATH/output/hls-syn/vitis_hls.log"
 
 HLS_REPORT_PATH="$HLS_OUT_DIR/sol1/syn/report/BlackBoxJam_csynth.rpt"
 REPORT_OUT_DIR="$BNN_PATH/output/report/$NETWORK-$PLATFORM"
